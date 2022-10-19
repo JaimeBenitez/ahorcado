@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: blueviolet;
+}
+h1{    
+    text-align: center;
+    font-size: 50px;    
+}
+#principal{
+    background-color: aliceblue;
+    text-align: center;    
+    width: 500px;
+    height:500px;
+}
+#fallos{
+    background-color: red;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+img{
+    max-width: 200px;
+    max-height: 200px;
+}
+label{
+    font-size: 24px;
+    font-weight: bold;
+}
+input[type="button"]{
+    width: 60px;
+    height: 50px;
+    font-size: 15px;
+    background-color: aliceblue;
+}
+input:hover{
+    cursor: pointer;
+}
+p{
+    font-size: 24px;
+    font-weight: bold;
+}
