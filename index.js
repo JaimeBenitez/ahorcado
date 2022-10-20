@@ -13,24 +13,43 @@ document.addEventListener('DOMContentLoaded', function(){
     let palabraAdivinada = [];
     let intentos = 5;
 
-    function comenzar(){       
-         // Imprime las lineas que iran cambiando
-        for(let i in palabra.value){
-            palabraAdivinada.push('_');
-        }       
-        let mostrarPalabra = document.querySelector('#muestraPalabra');
-        mostrarPalabra.innerHTML = palabraAdivinada.join(' '); 
-        mostrarIntentos.textContent = intentos;
-        imagen.src = 'img/perfecto.jpg'; 
-        botonEmpezar.disabled = true;  
-        palabra.disabled = true;
-    
+    function validar_input(){
+        let limpiar = "ºª\!|\"@#·$~%&¬/()=?'¿¡^`[*+]ç´¨{}<>,.-;:_0123456789 ";
+        let valido = true;
+        for(let i = 0; i<palabra.value.length;i++){            
+            var check = limpiar.split('').find(caracter => palabra.value[i] === caracter)            
+            if(check === undefined){
+                valido = true;
+            }else{
+                valido = false;
+                break;
+            }
+        }
+        return valido;
     }
+
+    function comenzar(){
+        if(validar_input() == false){
+            mensaje.innerHTML = "Palabra no permitida. Introduce una palabra valida"
+        }else{       
+            // Imprime las lineas que iran cambiando
+            for(let i in palabra.value){
+                palabraAdivinada.push('_');
+            }       
+            let mostrarPalabra = document.querySelector('#muestraPalabra');
+            mostrarPalabra.innerHTML = palabraAdivinada.join(' '); 
+            mensaje.innerHTML = ""
+            mostrarIntentos.textContent = intentos;
+            imagen.src = 'img/perfecto.jpg'; 
+            botonEmpezar.disabled = true;  
+            palabra.disabled = true; 
+        }
     
+    }    
     function introducirLetra(){   
         let letra = document.querySelector('#letra').value;    
         let palabraActual = palabra.value;                          
-        mensaje.innerHTML = " ";    
+        mensaje.innerHTML = "";    
         //comprueba si la letra ya existe en letrasUsadas
         if(letrasUsadas.indexOf(letra) != -1){            
             mensaje.innerHTML = 'Letra ya usada';
@@ -97,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function(){
     //Accion de botones
     
     botonEmpezar.addEventListener('click',comenzar);    
-    botonLetra.addEventListener('click',introducirLetra);
-    
+    botonLetra.addEventListener('click',introducirLetra);    
 
 });
